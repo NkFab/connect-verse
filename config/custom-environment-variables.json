@@ -1,0 +1,15 @@
+{
+    "node_env": "NODE_ENV",
+    "app": {
+        "database": {
+            "uri": "CONNECTVERSE_URI",
+            "testUri": "CONNECTVERSE_TEST_DATABASE_URI",
+            "logging": "CONNECTVERSE_ENABLE_DB_LOGS"
+        },
+        "baseUri": {
+            "resetPasswordUri": "CONNECTVERSE_RESET_PASSWORD_URI",
+            "fe": "CONNECTVERSE_BASE_URL_FE"
+        },
+        "secretKey": "JWT_SECRET_KEY"
+    }
+}
