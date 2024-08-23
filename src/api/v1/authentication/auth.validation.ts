@@ -9,7 +9,6 @@ export const validateLogin = celebrate({
   })
 });
 
-
 export const validateCreateUser = celebrate({
   [Segments.BODY]: Joi.object({
     email: Joi.string()
@@ -19,4 +18,3 @@ export const validateCreateUser = celebrate({
     password: Joi.string().required()
   })
 });
-

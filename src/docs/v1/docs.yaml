@@ -1,0 +1,137 @@
+openapi: 3.0.0 
+
+info:
+  title: Connectverse
+  description: API Documentation for Connectverse
+  version: 1.0.0 
+
+paths:
+  /auth/login:
+    post:
+      tags:
+        - Authentication
+      description: Authenticates a user with provided username/email and password.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: johndoe
+                email:
+                  type: string
+                  example: johndoe@example.com
+                password:
+                  type: string
+                  example: password123
+              required:
+                - password
+      responses:
+        '200':
+          description: Successful login, returns JWT token and a success message.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Logged in successfully
+                  token:
+                    type: string
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.w_Ja1d9Jas1d9
+        '400':
+          description: Bad request, invalid credentials.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: wrong credentials
+        '500':
+          description: Server error.
+  /auth/signup:
+    post: 
+      tags:
+        - Signup
+      description: Registration of a new account on Connectverse.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: johndoe
+                email:
+                  type: string
+                  example: johndoe@example.com
+                password:
+                  type: string
+                  example: password123
+              required:
+                - username
+                - email
+                - password
+      responses:
+        '200':
+          description: Successful registration, returns JWT token and a success message.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User created successfully
+                  token:
+                    type: string
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.w_Ja1d9Jas1d9
+        '400':
+          description: Bad request, validation errors or existing account.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: Validation failed
+                  validation:
+                    type: object
+                    additionalProperties:
+                      type: string
+                    example:
+                      message: User already exists
+        '500':
+          description: Server error.
+  /auth/logout:
+    post:
+      tags:
+        - Logout
+      description: Logout of a session.
+      
+      responses:
+        '200':
+          description: Successfull session ending.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Session ended
+        '500':
+          description: Server error.
+

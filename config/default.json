@@ -3,6 +3,9 @@
         "name": "Connect verse",
         "organization": {
             "name": "Manzi Apps"
+        },
+        "session": {
+            "name": "cv-be"
         }
     }
 }

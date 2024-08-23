@@ -16,7 +16,6 @@ import {
   createdAt: "created_at",
   updatedAt: "updated_at",
   indexes: [
-    { fields: ["name"] },
     { fields: ["email"], unique: true },
     { fields: ["username"], unique: true }
   ]
