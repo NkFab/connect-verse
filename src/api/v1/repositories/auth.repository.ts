@@ -25,15 +25,11 @@ export class AuthRepository extends BaseRepository<Users> {
   }
 
   public createUser = asyncHandler(async (req: any, res: Response) => {
-    const {
-      email,
-      password,
-      username
-    }: IUserCreationAttributes = req.body;
+    const { email, password, username }: IUserCreationAttributes = req.body;
 
     const where = {
       email,
-      username,
+      username
     };
     const found = await this.getRecordByField(where);
 
@@ -59,11 +55,17 @@ export class AuthRepository extends BaseRepository<Users> {
       });
     }
 
+    const { password: _pwd, ...excludedPassword } = created.toJSON();
+
+    const token = await this.userHelper.generateWebToken({
+      ...excludedPassword
+    });
+
     return responseWrapper({
       status: httpStatuses.OK,
       res,
       message: "User created successfully",
-      data: created
+      token
     });
   });
 
@@ -77,7 +79,7 @@ export class AuthRepository extends BaseRepository<Users> {
       return responseWrapper({
         res,
         status: httpStatuses.BAD_REQUEST,
-        message: "wrong credentials"
+        message: "Wrong credentials"
       });
     }
 
@@ -91,7 +93,7 @@ export class AuthRepository extends BaseRepository<Users> {
       return responseWrapper({
         res,
         status: httpStatuses.BAD_REQUEST,
-        message: "wrong credentials"
+        message: "Wrong credentials"
       });
     }
 
@@ -119,7 +121,7 @@ export class AuthRepository extends BaseRepository<Users> {
     return responseWrapper({
       res,
       status: httpStatuses.OK,
-      message: "logged out successfully"
+      message: "Session ended"
     });
   });
 }

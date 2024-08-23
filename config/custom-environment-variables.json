@@ -8,7 +8,8 @@
         },
         "baseUri": {
             "resetPasswordUri": "CONNECTVERSE_RESET_PASSWORD_URI",
-            "fe": "CONNECTVERSE_BASE_URL_FE"
+            "fe": "CONNECTVERSE_BASE_URL_FE",
+            "be": "CONNECTVERSE_API_URL"
         },
         "secretKey": "JWT_SECRET_KEY"
     }

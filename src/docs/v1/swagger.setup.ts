@@ -1,20 +1,21 @@
 import swaggerJsDoc, { SwaggerDefinition } from "swagger-jsdoc";
 import path from "path";
 import swaggerUI from "swagger-ui-express";
+import config from "config";
 
 const definition: SwaggerDefinition = {
   info: {
     title: "Connectverse",
     description: "API Documentation for Connectverse",
-    version: "1"
+    version: "1.0.0"
   },
-  servers: [{ url: "http://localhost:3000/api/v1" }],
+  servers: [{ url: config.get("app.baseUri.be") }],
   openapi: "3.0.0"
 };
 
 const swaggerOptions = {
   swaggerDefinition: definition,
-  apis: [path.join(__dirname, "./*.yaml")]
+  apis: [path.join(__dirname, "*.yaml")]
 };
 
 const swaggerSpec = swaggerJsDoc(swaggerOptions);

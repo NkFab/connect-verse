@@ -1,4 +1,3 @@
-
 import express from "express";
 import { Router } from "express";
 import { AuthRoute } from "./api/v1/authentication/auth.routes";

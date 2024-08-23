@@ -1,9 +1,6 @@
 import express, { IRouter } from "express";
 import AuthController from "./auth.controller";
-import {
-  validateLogin,
-  validateCreateUser
-} from "./auth.validation";
+import { validateLogin, validateCreateUser } from "./auth.validation";
 
 export class AuthRoute extends AuthController {
   private _router = express.Router();
@@ -22,11 +19,7 @@ export class AuthRoute extends AuthController {
     this._router.post("/login", validateLogin, this.login);
     this._router.post("/logout", this.logout);
 
-    this._router.post(
-      "/signup",
-      validateCreateUser,
-      this.createUser
-    );
+    this._router.post("/signup", validateCreateUser, this.createUser);
   };
 }
 
