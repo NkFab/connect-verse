@@ -9,7 +9,7 @@ import { httpStatuses } from "./constants";
 import responseWrapper from "./helpers/response.helper";
 import swaggerSetup from "./docs/v1/swagger.setup";
 import errorHandler from "./helpers/error.helper";
-import expressSession from "express-session";
+import session from "cookie-session";
 import config from "config";
 import { MainRoutes } from "./routes";
 
@@ -26,17 +26,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(
-  expressSession({
-    secret: config.get("app.secretKey"),
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 5 * 365,
-      httpOnly: true,
-      secure: config.get("node_env") === "production",
-      sameSite: "lax"
-    },
-    name: config.get("app.session.name")
+  session({
+    name: config.get("app.session.name"),
+    keys: config.get("app.secretKey"),
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
   })
 );
 
