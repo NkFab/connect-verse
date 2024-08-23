@@ -1,6 +1,6 @@
 import { IUserCreationAttributes } from "./../../../types/user.types";
 /* eslint-disable require-jsdoc */
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { usersRepository } from "../../../db/sequelize";
 import { Users } from "../../../db/models";
 import { BaseRepository } from "./base.repository";

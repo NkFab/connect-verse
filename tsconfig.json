@@ -13,7 +13,7 @@
     "sourceMap": false,
     "outDir": "dist",
     "rootDir": "src",
-    "allowJs": true,
+    "allowJs": false, // Removed if not needed
     "strictPropertyInitialization": false,
     "useUnknownInCatchVariables": false
   },
@@ -27,5 +27,8 @@
   "lib": [
     "es2015"
   ],
-  "typeRoots": ["./node_modules/@types", "./src/types"]
+  "typeRoots": [
+    "./node_modules/@types",
+    "./src/types"
+  ]
 }
