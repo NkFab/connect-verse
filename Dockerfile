@@ -2,6 +2,8 @@ FROM node:lts-alpine as production
 
 WORKDIR /app
 
+COPY config/ ./
+
 COPY package.json ./
 
 RUN npm install
