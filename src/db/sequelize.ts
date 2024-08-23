@@ -9,7 +9,13 @@ export const connect = (url: string): Sequelize => {
     models: [Users],
     repositoryMode: true,
     logging: console.log,
-    dialect: "postgres"
+    dialect: "postgres",
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    }
   });
 
   return sequelize;
