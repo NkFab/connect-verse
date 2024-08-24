@@ -6,8 +6,9 @@
   "scripts": {
     "start:prod": "set NODE_ENV=production && node dist/index.js",
     "dev": "NODE_ENV=development nodemon src/index.ts ",
-    "build": "npm run build:clean && tsc",
+    "build": "npm run build:clean && tsc && npm run copy-yaml",
     "build:clean": "rm -f -R dist",
+    "copy-yaml": "cp src/docs/v1/*.yaml dist/docs/v1/",
     "build:logs-create": "mkdir dist/src/logs",
     "lint": "tsc --noEmit && eslint 'src/*/**/*.{js,ts}' --quiet --cache --fix",
     "db:migrate": "ts-node src/db/migrations",
