@@ -1,3 +1,5 @@
+import * as dotenv from "dotenv";
+dotenv.config();
 import { Sequelize } from "sequelize-typescript";
 import config from "config";
 import { Users } from "./models";
@@ -5,17 +7,20 @@ import { Users } from "./models";
 const dbUri: string = config.get("app.database.uri");
 
 export const connect = (url: string): Sequelize => {
+  const isProduction = config.get("node_env") === "production";
   const sequelize = new Sequelize(url, {
     models: [Users],
     repositoryMode: true,
     logging: console.log,
     dialect: "postgres",
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false
-      }
-    }
+    dialectOptions: isProduction
+      ? {
+          ssl: {
+            require: true,
+            rejectUnauthorized: false
+          }
+        }
+      : {}
   });
 
   return sequelize;
